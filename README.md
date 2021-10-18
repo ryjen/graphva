@@ -4,11 +4,13 @@ A graph implementation in Java.
 
 ## Graphs
 
-- Generic directed, undirected graphs
+- Generic data types for edges and vertices
+- Directed, undirected graphs
 - Adjacency list or matrix graph implementations
-- labeled edges and vertices with degrees
-- iteratable iterators
-- formatters (stdout or custom)
+- Labeled edges and vertices with degrees
+- Iteratable iterators
+- Formatters (stdout or custom)
+- In/out vertex degrees
 
 ## Heaps
 - Dynamic array based heap implementation
