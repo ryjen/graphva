@@ -48,7 +48,7 @@ Graphable<Integer,String> matrixImpl = new AdjacencyMatrix<>()
 ## Examples
 
 ```Java
-bool directed = false;
+boolean directed = false;
 
 Graph<Integer,String> graph = Graph<>(impl, directed);
 
