@@ -1,15 +1,17 @@
-# Graphva: a graph implementation in Java
+# Graphva
+
+A graph implementation in Java.
 
 ## Graphs
 
-- Generic directed, undirected graphs.
-- Adjacency list or matrix graph implementations.
+- Generic directed, undirected graphs
+- Adjacency list or matrix graph implementations
 - labeled edges and vertices with degrees
-- iterators
+- iteratable iterators
 - formatters (stdout or custom)
 
 ## Heaps
-- Dynamic array based heap implementation.
+- Dynamic array based heap implementation
 
 ## Trees
 
@@ -24,7 +26,6 @@
 - Topological sort
 - Kruskals minimum spanning tree
 - Prims minimum spanning tree
-
 
 
 [Graphs](src/main/java/com/github/ryjen/graphva/graph)
@@ -49,13 +50,66 @@ Graph<Integer,String> graph = Graph<>(impl, directed);
 graph.addVertices("Hello", "World", "Robot", "Unnecessary", "Point");
 
 // add some edges between vertices
-        
+
 graph.addEdge("World", "Robot", 1);
 
 graph.addEdge("Hello", "Point", 2);
+```
 
-// iterate adjacent verticies
-Iterable<String> it = graph.adjacent("Robot");
+## Iterating
+
+```Java
+// iterate all vertices
+Iterable<String> it = graph.vertices();
+
+// or iterate adjacent vertices
+for (String vertex : graph.adjacent("Robot")) {
+  System.out.println(vertex);
+}
+
+// iterate all edges
+Iterable<Edge<Integer,String>> it = graph.edges();
+// or iterate edges for a vertex
+for (Edge<Integer,String>> edge : graph.edges("Robot")) {
+  System.out.println(edge);
+}
+```
+
+## Searching
+
+Breadth or Depth first:
+
+```Java
+// Store the results as a list, could be a custom callback
+List<String> result = new ArrayList<>();
+
+// breadth first from Robot vertex
+graph.bfs("Robot", result::add)
+
+// depth first from Hello vertex (pre, post, reversePost)
+graph.dfs("Hello", result::add, Ordering.Pre)
+
+```
+
+Dijkstra path:
+
+```Java
+// Store the result as a list, could be a custom callback
+List<String> result = new ArrayList<>();
+
+// Create the search for the graph
+Dijkstra<Integer> path = new Dijkstra<>(graph, actual::add);
+
+// start search from World vertex
+path.search("World")
+
+```
+
+Topological sort:
+```Java
+TopologicalSort<Integer, String> sorter = new TopologicalSort<>(graph);
+
+Collection<String> sorted = sorter.sort();
 ```
 
 ## Default formatters
@@ -94,8 +148,10 @@ System.out.println(graph.toString(new LabelFormatter<>(graph)));
  */
 ```
 
-[Trees](src/main/java/com/github/ryjen/graphva/graph/tree)
+Other
 =====
+
+## [Trees](src/main/java/com/github/ryjen/graphva/graph/tree)
 
 A disjointed set used to implement minimum spanning tree implementations.
 
@@ -106,8 +162,7 @@ Iterable<Edge<Integer, String>> actual = new MinimumSpanningTree.Prims<>(graph).
 
 ```
 
-[Heaps](src/main/java/com/github/ryjen/graphva/heap)
-=====
+## [Heaps](src/main/java/com/github/ryjen/graphva/heap)
 
 ```Java
 // create a max heap with capacity of 5
@@ -128,6 +183,10 @@ assert !heap.offer(7);
 // however this value is greater
 assert heap.offer(13);
 
+for (Integer i : heap) {
+  System.out.println(i);
+}
+
 while (!heap.isEmpty()) {
 	System.out.println(heap.remove());
 }
@@ -143,8 +202,7 @@ while (!heap.isEmpty()) {
 ```
 
 
-[Permutations](src/main/java/com/github/ryjen/graphva/Permutation.java)
-============
+## [Permutations](src/main/java/com/github/ryjen/graphva/Permutation.java)
 
 ```Java
 
@@ -178,3 +236,7 @@ Setup
 =====
 
 use maven or import maven project
+
+- `mvn test`: run unit tests
+- `mvn package`: to build jar
+- `mvn compile`: to compile
