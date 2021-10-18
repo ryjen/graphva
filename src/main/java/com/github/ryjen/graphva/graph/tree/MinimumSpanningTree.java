@@ -10,6 +10,7 @@ import java.util.*;
 /**
  * Implements minimum spanning tree algorithms
  * https://en.wikipedia.org/wiki/Minimum_spanning_tree
+ * TODO: update using a callback or stream-like implementation instead of a collection
  */
 public abstract class MinimumSpanningTree<E extends Comparable<E>, V extends Comparable<V>> {
 

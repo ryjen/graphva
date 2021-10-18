@@ -1,6 +1,6 @@
 # Graphva
 
-A graph implementation in Java.
+A graph implementation in Java
 
 ## Graphs
 
@@ -33,28 +33,32 @@ A graph implementation in Java.
 [Graphs](src/main/java/com/github/ryjen/graphva/graph)
 ======
 
+Graph edges (connections) and Vertices (points) must implement `Comparable`.
+
 ## Adjacency List and Matrix implementations
 
+Implementations for `Integer` edges and `String` vertices:
+
 ```Java
-Graphable impl = new AdjacencyList()
-Graphable impl = new AdjacencyMatrix()
+// Create implementations for a graph with Integer edges and String vertices
+Graphable<Integer,String> listImpl = new AdjacencyList<>()
+Graphable<Integer,String> matrixImpl = new AdjacencyMatrix<>()
 ```
 
-## Creating
+## Examples
 
 ```Java
 bool directed = false;
 
 Graph<Integer,String> graph = Graph<>(impl, directed);
 
-// add some vertices
-
+// add a list of vertices
 graph.addVertices("Hello", "World", "Robot", "Unnecessary", "Point");
 
-// add some edges between vertices
-
+// add an edge of value 1 between the World and Robot vertices
 graph.addEdge("World", "Robot", 1);
 
+// add and edge of value 2 between the Hello and Point vertices
 graph.addEdge("Hello", "Point", 2);
 ```
 
@@ -64,14 +68,15 @@ graph.addEdge("Hello", "Point", 2);
 // iterate all vertices
 Iterable<String> it = graph.vertices();
 
-// or iterate adjacent vertices
+// or iterate adjacent vertices to Robot
 for (String vertex : graph.adjacent("Robot")) {
   System.out.println(vertex);
 }
 
 // iterate all edges
 Iterable<Edge<Integer,String>> it = graph.edges();
-// or iterate edges for a vertex
+
+// iterate edges for the Robot vertex
 for (Edge<Integer,String>> edge : graph.edges("Robot")) {
   System.out.println(edge);
 }
@@ -159,8 +164,15 @@ A disjointed set used to implement minimum spanning tree implementations.
 
 ```Java
 
-Iterable<Edge<Integer, String>> minimum = new MinimumSpanningTree.Kruskals<>(graph).find();
-Iterable<Edge<Integer, String>> actual = new MinimumSpanningTree.Prims<>(graph).find();
+MinimumSpanningTree<Integer, String> kruskal = new MinimumSpanningTree.Kruskals<>(graph);
+
+for (Edge<Integer,String> result : kruskal.find()) {
+  System.out.println(result);
+}
+
+MinimumSpanningTree<Integer, String> prims = new MinimumSpanningTree.Prims<>(graph);
+
+Iterable<> it = prims.find();
 
 ```
 
