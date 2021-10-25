@@ -215,37 +215,6 @@ while (!heap.isEmpty()) {
  */
 ```
 
-
-## [Permutations](src/main/java/com/github/ryjen/graphva/Permutation.java)
-
-```Java
-
-// create an array of items
-List<Character> items = Arrays.asList('A', 'B', 'C');
-
-// find the permutations of the array
-Permutation<Character> permutations = Permutation.generate(items);
-
-// print the result
-for(List<Character> perm : permutations) {
-	for(Character ch : perm) {
-		System.out.printf("%c ", ch);
-	}
-	System.out.println();
-}
-
-/*
- * OUTPUT:
- * C B A
- * B C A
- * B A C 
- * C A B
- * A C B
- * A B C
- */
-
-```
-
 Setup
 =====
 
