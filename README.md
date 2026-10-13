@@ -1,5 +1,7 @@
 # Graphva
 
+> **Historical example (unmaintained).** Educational Java graph algorithms and data-structure exploration; retained as historical source, not a maintained library or current Java engineering reference.
+
 A graph implementation in Java
 
 ## Graphs
